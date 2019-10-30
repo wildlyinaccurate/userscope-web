@@ -37,16 +37,10 @@ const userSchema = new mongoose.Schema(
     passwordResetToken: String,
     passwordResetExpires: Date,
 
-    facebook: String,
-    twitter: String,
-    google: String,
     tokens: Array,
 
     profile: {
       name: String,
-      gender: String,
-      location: String,
-      website: String,
       picture: String
     }
   },
