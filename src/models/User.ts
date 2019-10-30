@@ -6,16 +6,12 @@ export type UserDocument = mongoose.Document & {
   email: string
   password: string
   passwordResetToken: string
-  passwordResetExpires: Date
+  passwordResetExpires: string
 
-  facebook: string
   tokens: AuthToken[]
 
   profile: {
     name: string
-    gender: string
-    location: string
-    website: string
     picture: string
   }
 
@@ -30,22 +26,19 @@ export interface AuthToken {
   kind: string
 }
 
-const userSchema = new mongoose.Schema(
-  {
-    email: { type: String, unique: true },
-    password: String,
-    passwordResetToken: String,
-    passwordResetExpires: Date,
+const userSchema = new mongoose.Schema({
+  email: { type: String, unique: true },
+  password: String,
+  passwordResetToken: String,
+  passwordResetExpires: String,
 
-    tokens: Array,
+  tokens: Array,
 
-    profile: {
-      name: String,
-      picture: String
-    }
-  },
-  { timestamps: true }
-)
+  profile: {
+    name: String,
+    picture: String
+  }
+})
 
 /**
  * Password hash middleware.

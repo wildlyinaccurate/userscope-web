@@ -147,9 +147,6 @@ export const postUpdateProfile = async (req: Request, res: Response, next: NextF
     }
     user.email = req.body.email || ""
     user.profile.name = req.body.name || ""
-    user.profile.gender = req.body.gender || ""
-    user.profile.location = req.body.location || ""
-    user.profile.website = req.body.website || ""
     user.save((err: WriteError) => {
       if (err) {
         if (err.code === 11000) {
