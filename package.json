@@ -1,12 +1,12 @@
 {
-    "name": "express-typescript-starter",
+    "name": "a11y-report-web",
     "version": "0.1.0",
-    "description": "A starting point for Node.js express apps with TypeScript",
+    "description": "",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
+        "url": "https://github.com/wildlyinaccurate/a11y-report-web"
     },
-    "author": "Bowden Kelly",
+    "author": "Joseph Wynn <joseph@wildlyinaccurate.com>",
     "license": "MIT",
     "scripts": {
         "start": "npm run serve",
