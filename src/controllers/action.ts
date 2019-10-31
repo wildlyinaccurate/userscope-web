@@ -21,7 +21,7 @@ export const testAction = async (req: Request, res: Response) => {
   const sharedKeyCredential = new SharedKeyCredential(account, accountKey)
   const pipeline = StorageURL.newPipeline(sharedKeyCredential)
   const serviceURL = new ServiceURL(`https://${account}.queue.core.windows.net`, pipeline)
-  const queueName = "a11y-report-jobs"
+  const queueName = "a11y-report-bbc-a11y-jobs"
   const queueURL = QueueURL.fromServiceURL(serviceURL, queueName)
   const messagesURL = MessagesURL.fromQueueURL(queueURL)
 
