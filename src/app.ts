@@ -1,3 +1,4 @@
+import fs from "fs"
 import express from "express"
 import compression from "compression" // compresses requests
 import session from "express-session"
@@ -30,6 +31,15 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
   console.log("MongoDB connection error. Please make sure MongoDB is running. " + err)
 })
 
+// Local template variables
+let revision = ""
+
+if (fs.existsSync(`${__dirname}/../.revision`)) {
+  revision = fs.readFileSync(`${__dirname}/../.revision`, "utf8").substring(0, 8)
+} else {
+  console.log("Couldn't find .revision file")
+}
+
 // Express configuration
 app.set("port", process.env.PORT || 3000)
 app.set("views", path.join(__dirname, "../views"))
@@ -51,6 +61,9 @@ app.use(lusca.xframe("SAMEORIGIN"))
 app.use(lusca.xssProtection(true))
 app.use((req, res, next) => {
   res.locals.user = req.user
+  res.locals.package = require("../package.json")
+  res.locals.revision = revision
+
   next()
 })
 app.use((req, _, next) => {
