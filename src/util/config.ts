@@ -7,6 +7,7 @@ if (fs.existsSync(".env")) {
   dotenv.config({ path: ".env" })
 }
 export const ENVIRONMENT = process.env.NODE_ENV
+export const SESSION_TIMEOUT = Number(process.env["SESSION_TIMEOUT"])
 export const SESSION_SECRET = process.env["SESSION_SECRET"]
 export const MONGODB_URI = process.env["MONGODB_URI"]
 export const STORAGE_ACCOUNT_NAME = process.env["STORAGE_ACCOUNT_NAME"]

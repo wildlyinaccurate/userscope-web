@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { SharedKeyCredential, StorageURL, ServiceURL, QueueURL, MessagesURL, Aborter } from "@azure/storage-queue"
-import { JOB_QUEUE_NAME, STORAGE_ACCOUNT_NAME, STORAGE_ACCOUNT_KEY } from "../util/secrets"
+import { JOB_QUEUE_NAME, STORAGE_ACCOUNT_NAME, STORAGE_ACCOUNT_KEY } from "../util/config"
 import { check, validationResult } from "express-validator"
 
 export const testAction = async (req: Request, res: Response) => {
