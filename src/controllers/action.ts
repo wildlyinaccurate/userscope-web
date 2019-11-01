@@ -25,7 +25,7 @@ export const testAction = async (req: Request, res: Response) => {
   const messagesURL = MessagesURL.fromQueueURL(queueURL)
 
   try {
-    const enqueueQueueResponse = await messagesURL.enqueue(Aborter.none, req.body.url, {
+    const enqueueQueueResponse = await messagesURL.enqueue(Aborter.none, Buffer.from(req.body.url).toString("base64"), {
       messageTimeToLive: 1 * 24 * 60 * 60
     })
 
