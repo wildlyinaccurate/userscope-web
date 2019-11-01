@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { SharedKeyCredential, StorageURL, ServiceURL, QueueURL, MessagesURL, Aborter } from "@azure/storage-queue"
-import { AZURE_STORAGE_ACCOUNT_NAME, AZURE_STORAGE_ACCOUNT_KEY } from "../util/secrets"
+import { JOB_QUEUE_NAME, STORAGE_ACCOUNT_NAME, STORAGE_ACCOUNT_KEY } from "../util/secrets"
 import { check, validationResult } from "express-validator"
 
 export const testAction = async (req: Request, res: Response) => {
@@ -15,14 +15,13 @@ export const testAction = async (req: Request, res: Response) => {
     return res.redirect("/")
   }
 
-  const account = AZURE_STORAGE_ACCOUNT_NAME
-  const accountKey = AZURE_STORAGE_ACCOUNT_KEY
+  const account = STORAGE_ACCOUNT_NAME
+  const accountKey = STORAGE_ACCOUNT_KEY
 
   const sharedKeyCredential = new SharedKeyCredential(account, accountKey)
   const pipeline = StorageURL.newPipeline(sharedKeyCredential)
   const serviceURL = new ServiceURL(`https://${account}.queue.core.windows.net`, pipeline)
-  const queueName = "a11y-report-bbc-a11y-jobs"
-  const queueURL = QueueURL.fromServiceURL(serviceURL, queueName)
+  const queueURL = QueueURL.fromServiceURL(serviceURL, JOB_QUEUE_NAME)
   const messagesURL = MessagesURL.fromQueueURL(queueURL)
 
   try {

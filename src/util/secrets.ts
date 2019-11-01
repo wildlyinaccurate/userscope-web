@@ -9,8 +9,9 @@ if (fs.existsSync(".env")) {
 export const ENVIRONMENT = process.env.NODE_ENV
 export const SESSION_SECRET = process.env["SESSION_SECRET"]
 export const MONGODB_URI = process.env["MONGODB_URI"]
-export const AZURE_STORAGE_ACCOUNT_NAME = process.env["AZURE_STORAGE_ACCOUNT_NAME"]
-export const AZURE_STORAGE_ACCOUNT_KEY = process.env["AZURE_STORAGE_ACCOUNT_KEY"]
+export const STORAGE_ACCOUNT_NAME = process.env["STORAGE_ACCOUNT_NAME"]
+export const STORAGE_ACCOUNT_KEY = process.env["STORAGE_ACCOUNT_KEY"]
+export const JOB_QUEUE_NAME = process.env["JOB_QUEUE_NAME"]
 
 if (!SESSION_SECRET) {
   logger.error("No client secret. Set SESSION_SECRET environment variable.")
