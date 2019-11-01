@@ -9,7 +9,7 @@ import path from "path"
 import mongoose from "mongoose"
 import passport from "passport"
 import bluebird from "bluebird"
-import { MONGODB_URI, SESSION_SECRET } from "./util/secrets"
+import { MONGODB_URI, SESSION_SECRET } from "./util/config"
 
 // Controllers (route handlers)
 import * as homeController from "./controllers/home"
