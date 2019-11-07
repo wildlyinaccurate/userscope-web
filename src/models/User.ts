@@ -26,19 +26,22 @@ export interface AuthToken {
   kind: string
 }
 
-const userSchema = new mongoose.Schema({
-  email: { type: String, unique: true },
-  password: String,
-  passwordResetToken: String,
-  passwordResetExpires: String,
+const userSchema = new mongoose.Schema(
+  {
+    email: { type: String, unique: true },
+    password: String,
+    passwordResetToken: String,
+    passwordResetExpires: String,
 
-  tokens: Array,
+    tokens: Array,
 
-  profile: {
-    name: String,
-    picture: String
-  }
-})
+    profile: {
+      name: String,
+      picture: String
+    }
+  },
+  { timestamps: true }
+)
 
 /**
  * Password hash middleware.
