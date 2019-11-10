@@ -1,5 +1,6 @@
 *.log
 .env
+.revision
 public/css/main.css
 coverage/
 node_modules/

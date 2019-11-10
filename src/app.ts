@@ -9,6 +9,7 @@ import path from "path"
 import mongoose from "mongoose"
 import passport from "passport"
 import bluebird from "bluebird"
+import expressHandlebars from "express-handlebars"
 import { MONGODB_URI, SESSION_SECRET } from "./util/config"
 
 // Controllers (route handlers)
@@ -43,7 +44,8 @@ if (fs.existsSync(`${__dirname}/../.revision`)) {
 // Express configuration
 app.set("port", process.env.PORT || 3000)
 app.set("views", path.join(__dirname, "../views"))
-app.set("view engine", "pug")
+app.engine("hbs", expressHandlebars({ extname: ".hbs" }))
+app.set("view engine", "hbs")
 app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))

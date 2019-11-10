@@ -65,26 +65,34 @@ userSchema.pre("save", function save(next) {
   })
 })
 
-const comparePassword: comparePasswordFunction = function(candidatePassword, cb) {
+userSchema.virtual("displayName").get(function() {
+  return this.profile.name || this.email || this.id
+})
+
+userSchema.methods.comparePassword = function(
+  candidatePassword: string,
+  cb: (err: mongoose.Error, isMatch: boolean) => void
+) {
   bcrypt.compare(candidatePassword, this.password, (err: mongoose.Error, isMatch: boolean) => {
     cb(err, isMatch)
   })
 }
 
-userSchema.methods.comparePassword = comparePassword
+const getGravatar = (size: number) =>
+  function() {
+    if (!this.email) {
+      return `https://gravatar.com/avatar/?s=${size}&d=retro`
+    }
 
-/**
- * Helper method for getting user's gravatar.
- */
-userSchema.methods.gravatar = function(size: number = 200) {
-  if (!this.email) {
-    return `https://gravatar.com/avatar/?s=${size}&d=retro`
+    const md5 = crypto
+      .createHash("md5")
+      .update(this.email)
+      .digest("hex")
+
+    return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`
   }
-  const md5 = crypto
-    .createHash("md5")
-    .update(this.email)
-    .digest("hex")
-  return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`
-}
+
+userSchema.virtual("gravatar").get(getGravatar(200))
+userSchema.virtual("gravatarSmall").get(getGravatar(40))
 
 export const User = mongoose.model<UserDocument>("User", userSchema)

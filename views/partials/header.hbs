@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a href="/" class="navbar-brand">a11y-report</a>
+
+    <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggler">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <div class="dropdown-divider"></div>
+
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item">
+          <a href="/contact" class="nav-link">Contact</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav">
+        {{#if user}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+            {{user.displayName}}
+          </a>
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="/account">My Account</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Create Account</a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>

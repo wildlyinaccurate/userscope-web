@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }} - A11y Report</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ _csrf }}">
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <link rel="stylesheet" href="/css/bootstrap-4.3.1.min.css">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  {{> header }}
+
+  <div class="container pt-3 pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
+    {{> flash }}
+    {{{ body }}}
+  </div>
+
+  {{> footer }}
+
+  <script src="/js/main.js"></script>
+  <script src="/js/lib/jquery-3.3.1.slim.min.js"></script>
+  <script src="/js/lib/bootstrap-4.3.1.min.js"></script>
+</body>
