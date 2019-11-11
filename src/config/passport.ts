@@ -2,7 +2,6 @@ import passport from "passport"
 import passportLocal from "passport-local"
 import _ from "lodash"
 
-// import { User, UserType } from '../models/User';
 import { User, UserDocument } from "../models/User"
 import { Request, Response, NextFunction } from "express"
 

@@ -11,6 +11,8 @@ import passport from "passport"
 import bluebird from "bluebird"
 import expressHandlebars from "express-handlebars"
 import { MONGODB_URI, SESSION_SECRET } from "./util/config"
+import mongo from "connect-mongo"
+const MongoStore = mongo(session)
 
 // Controllers (route handlers)
 import * as homeController from "./controllers/home"
@@ -53,7 +55,12 @@ app.use(
   session({
     resave: true,
     saveUninitialized: true,
-    secret: SESSION_SECRET
+    secret: SESSION_SECRET,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      autoReconnect: true,
+      autoRemove: "disabled"
+    })
   })
 )
 app.use(passport.initialize())

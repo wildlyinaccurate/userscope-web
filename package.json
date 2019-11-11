@@ -1,5 +1,5 @@
 {
-    "name": "a11y-report-web",
+    "name": "userscope-web",
     "version": "0.1.1",
     "description": "",
     "repository": {
@@ -63,6 +63,7 @@
         "@types/bluebird": "^3.5.28",
         "@types/body-parser": "^1.17.1",
         "@types/chai": "^4.2.4",
+        "@types/chart.js": "^2.8.11",
         "@types/compression": "^1.0.1",
         "@types/concurrently": "^4.1.0",
         "@types/connect-mongo": "^0.0.43",
