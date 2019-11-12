@@ -1,8 +1,10 @@
 import bcrypt from "bcrypt-nodejs"
 import crypto from "crypto"
 import mongoose from "mongoose"
+import { Team, TeamDocument } from "./Team"
 
 export type UserDocument = mongoose.Document & {
+  team: TeamDocument
   email: string
   password: string
   passwordResetToken: string
@@ -23,8 +25,13 @@ export interface AuthToken {
   kind: string
 }
 
-const userSchema = new mongoose.Schema(
+export const userSchema = new mongoose.Schema(
   {
+    team: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Team
+    },
+
     email: { type: String, unique: true },
     password: String,
     passwordResetToken: String,

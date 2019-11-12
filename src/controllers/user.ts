@@ -3,6 +3,7 @@ import crypto from "crypto"
 import nodemailer from "nodemailer"
 import passport from "passport"
 import { User, UserDocument, AuthToken } from "../models/User"
+import { Team } from "../models/Team"
 import { Request, Response, NextFunction } from "express"
 import { WriteError } from "mongodb"
 import { check, sanitize, validationResult } from "express-validator"
@@ -90,7 +91,12 @@ export const postSignup = async (req: Request, res: Response, next: NextFunction
     return res.redirect("/signup")
   }
 
+  const team = new Team()
+
+  await team.save()
+
   const user = new User({
+    team: team._id,
     email: req.body.email,
     password: req.body.password
   })

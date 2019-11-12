@@ -1,7 +1,6 @@
 import passport from "passport"
 import passportLocal from "passport-local"
-
-import { User, UserDocument } from "../models/User"
+import { User } from "../models/User"
 import { Request, Response, NextFunction } from "express"
 
 const LocalStrategy = passportLocal.Strategy
@@ -11,9 +10,11 @@ passport.serializeUser<any, any>((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user)
-  })
+  User.findById(id)
+    .populate("team")
+    .exec((err, user) => {
+      done(err, user)
+    })
 })
 
 /**
