@@ -4,7 +4,6 @@ import nodemailer from "nodemailer"
 import passport from "passport"
 import { User, UserDocument, AuthToken } from "../models/User"
 import { Request, Response, NextFunction } from "express"
-import { IVerifyOptions } from "passport-local"
 import { WriteError } from "mongodb"
 import { check, sanitize, validationResult } from "express-validator"
 import "../config/passport"
@@ -37,19 +36,19 @@ export const postLogin = async (req: Request, res: Response, next: NextFunction)
     return res.redirect("/login")
   }
 
-  passport.authenticate("local", (err: Error, user: UserDocument, info: IVerifyOptions) => {
+  passport.authenticate("local", (err: Error, user: UserDocument) => {
     if (err) {
       return next(err)
     }
     if (!user) {
-      req.flash("errors", { msg: info.message })
+      req.flash("errors", [{ msg: "Invalid email address or password" }])
       return res.redirect("/login")
     }
     req.logIn(user, err => {
       if (err) {
         return next(err)
       }
-      req.flash("success", { msg: "Success! You are logged in." })
+      req.flash("success", [{ msg: "Success! You are logged in." }])
       res.redirect(req.session.returnTo || "/")
     })
   })(req, res, next)
@@ -101,7 +100,7 @@ export const postSignup = async (req: Request, res: Response, next: NextFunction
       return next(err)
     }
     if (existingUser) {
-      req.flash("errors", { msg: "Account with that email address already exists." })
+      req.flash("errors", [{ msg: "Account with that email address already exists." }])
       return res.redirect("/signup")
     }
     user.save(err => {
@@ -128,7 +127,6 @@ export const postUpdateProfile = async (req: Request, res: Response, next: NextF
   await check("email", "Please enter a valid email address.")
     .isEmail()
     .run(req)
-  // eslint-disable-next-line @typescript-eslint/camelcase
   await sanitize("email")
     .normalizeEmail({ gmail_remove_dots: false })
     .run(req)
@@ -150,12 +148,12 @@ export const postUpdateProfile = async (req: Request, res: Response, next: NextF
     user.save((err: WriteError) => {
       if (err) {
         if (err.code === 11000) {
-          req.flash("errors", { msg: "The email address you have entered is already associated with an account." })
+          req.flash("errors", [{ msg: "The email address you have entered is already associated with an account." }])
           return res.redirect("/account")
         }
         return next(err)
       }
-      req.flash("success", { msg: "Profile information has been updated." })
+      req.flash("success", [{ msg: "Profile information has been updated." }])
       res.redirect("/account")
     })
   })
@@ -186,7 +184,7 @@ export const postUpdatePassword = async (req: Request, res: Response, next: Next
       if (err) {
         return next(err)
       }
-      req.flash("success", { msg: "Password has been changed." })
+      req.flash("success", [{ msg: "Password has been changed." }])
       res.redirect("/account")
     })
   })
@@ -216,7 +214,7 @@ export const getReset = (req: Request, res: Response, next: NextFunction) => {
         return next(err)
       }
       if (!user) {
-        req.flash("errors", { msg: "Password reset token is invalid or has expired." })
+        req.flash("errors", [{ msg: "Password reset token is invalid or has expired." }])
         return res.redirect("/forgot")
       }
       res.render("account/reset", {
@@ -252,7 +250,7 @@ export const postReset = async (req: Request, res: Response, next: NextFunction)
               return next(err)
             }
             if (!user) {
-              req.flash("errors", { msg: "Password reset token is invalid or has expired." })
+              req.flash("errors", [{ msg: "Password reset token is invalid or has expired." }])
               return res.redirect("back")
             }
             user.password = req.body.password
@@ -283,7 +281,7 @@ export const postReset = async (req: Request, res: Response, next: NextFunction)
           text: `Hello,\n\nThis is a confirmation that the password for your account ${user.email} has just been changed.\n`
         }
         transporter.sendMail(mailOptions, err => {
-          req.flash("success", { msg: "Success! Your password has been changed." })
+          req.flash("success", [{ msg: "Success! Your password has been changed." }])
           done(err)
         })
       }
@@ -336,7 +334,7 @@ export const postForgot = async (req: Request, res: Response, next: NextFunction
             return done(err)
           }
           if (!user) {
-            req.flash("errors", { msg: "Account with that email address does not exist." })
+            req.flash("errors", [{ msg: "Account with that email address does not exist." }])
             return res.redirect("/forgot")
           }
           user.passwordResetToken = token
@@ -364,7 +362,7 @@ export const postForgot = async (req: Request, res: Response, next: NextFunction
           If you did not request this, please ignore this email and your password will remain unchanged.\n`
         }
         transporter.sendMail(mailOptions, err => {
-          req.flash("info", { msg: `An e-mail has been sent to ${user.email} with further instructions.` })
+          req.flash("info", [{ msg: `An e-mail has been sent to ${user.email} with further instructions.` }])
           done(err)
         })
       }

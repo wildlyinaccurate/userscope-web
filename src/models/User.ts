@@ -8,15 +8,12 @@ export type UserDocument = mongoose.Document & {
   passwordResetToken: string
   passwordResetExpires: string
 
-  tokens: AuthToken[]
-
   profile: {
     name: string
     picture: string
   }
 
   comparePassword: comparePasswordFunction
-  gravatar: (size: number) => string
 }
 
 type comparePasswordFunction = (candidatePassword: string, cb: (err: any, isMatch: any) => {}) => void
@@ -32,8 +29,6 @@ const userSchema = new mongoose.Schema(
     password: String,
     passwordResetToken: String,
     passwordResetExpires: String,
-
-    tokens: Array,
 
     profile: {
       name: String,
