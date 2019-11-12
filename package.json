@@ -46,9 +46,8 @@
         "express-validator": "^6.2.0",
         "fbgraph": "^1.4.4",
         "install": "^0.13.0",
-        "lodash": "^4.17.15",
         "lusca": "^1.6.1",
-        "mongoose": "^5.7.9",
+        "mongoose": "^5.7.10",
         "nodemailer": "^6.3.1",
         "npm": "^6.13.0",
         "passport": "^0.4.0",
@@ -60,7 +59,7 @@
     "devDependencies": {
         "@types/async": "^3.0.3",
         "@types/bcrypt-nodejs": "^0.0.30",
-        "@types/bluebird": "^3.5.28",
+        "@types/bluebird": "^3.5.29",
         "@types/body-parser": "^1.17.1",
         "@types/chai": "^4.2.4",
         "@types/chart.js": "^2.8.11",
@@ -76,7 +75,6 @@
         "@types/express-session": "^1.15.15",
         "@types/jest": "^24.0.22",
         "@types/jquery": "^3.3.31",
-        "@types/lodash": "^4.14.146",
         "@types/lusca": "^1.6.1",
         "@types/mongoose": "^5.5.30",
         "@types/node": "^12.12.7",
@@ -88,8 +86,8 @@
         "@types/shelljs": "^0.8.6",
         "@types/supertest": "^2.0.8",
         "@types/winston": "^2.4.4",
-        "@typescript-eslint/eslint-plugin": "^2.6.1",
-        "@typescript-eslint/parser": "^2.6.1",
+        "@typescript-eslint/eslint-plugin": "^2.7.0",
+        "@typescript-eslint/parser": "^2.7.0",
         "chai": "^4.2.0",
         "concurrently": "^4.1.2",
         "eslint": "^6.6.0",
@@ -101,7 +99,7 @@
         "shelljs": "^0.8.3",
         "supertest": "^4.0.2",
         "ts-jest": "^24.1.0",
-        "ts-node": "^8.4.1",
+        "ts-node": "^8.5.0",
         "typescript": "^3.7.2"
     }
 }
