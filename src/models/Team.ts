@@ -1,8 +1,4 @@
-import mongoose from "mongoose"
+import { model } from "mongoose"
+import { TeamDocument, teamSchema } from "userscope-data-models"
 
-export type TeamDocument = mongoose.Document & {
-  _id: string
-}
-
-const TeamSchema = new mongoose.Schema({}, { timestamps: true })
-export const Team = mongoose.model<TeamDocument>("Team", TeamSchema)
+export const Team = model<TeamDocument>("Team", teamSchema)

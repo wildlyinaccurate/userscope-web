@@ -2,12 +2,13 @@ import async from "async"
 import crypto from "crypto"
 import nodemailer from "nodemailer"
 import passport from "passport"
-import { User, UserDocument, AuthToken } from "../models/User"
-import { Team } from "../models/Team"
+import { UserDocument, AuthToken, teamSchema } from "userscope-data-models"
 import { Request, Response, NextFunction } from "express"
 import { WriteError } from "mongodb"
 import { check, sanitize, validationResult } from "express-validator"
 import "../config/passport"
+import { User } from "../models/User"
+import { Team } from "../models/Team"
 
 export const getLogin = (req: Request, res: Response) => {
   if (req.user) {
@@ -25,7 +26,6 @@ export const postLogin = async (req: Request, res: Response, next: NextFunction)
   await check("password", "Password cannot be blank")
     .isLength({ min: 1 })
     .run(req)
-  // eslint-disable-next-line @typescript-eslint/camelcase
   await sanitize("email")
     .normalizeEmail({ gmail_remove_dots: false })
     .run(req)
@@ -80,7 +80,6 @@ export const postSignup = async (req: Request, res: Response, next: NextFunction
     .equals(req.body.password)
     .run(req)
   await sanitize("email")
-    // eslint-disable-next-line @typescript-eslint/camelcase
     .normalizeEmail({ gmail_remove_dots: false })
     .run(req)
 
@@ -91,7 +90,7 @@ export const postSignup = async (req: Request, res: Response, next: NextFunction
     return res.redirect("/signup")
   }
 
-  const team = new Team()
+  const team = new Team({ name: "My Team" })
 
   await team.save()
 
@@ -123,7 +122,7 @@ export const postSignup = async (req: Request, res: Response, next: NextFunction
   })
 }
 
-export const getAccount = (_: Request, res: Response) => {
+export const getAccount = async (req: Request, res: Response) => {
   res.render("account/profile", {
     title: "Account Management"
   })

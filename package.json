@@ -4,7 +4,7 @@
     "description": "",
     "repository": {
         "type": "git",
-        "url": "https://github.com/wildlyinaccurate/a11y-report-web"
+        "url": "https://github.com/wildlyinaccurate/userscope-web"
     },
     "author": "Joseph Wynn <joseph@wildlyinaccurate.com>",
     "license": "MIT",
@@ -18,8 +18,8 @@
         "watch-test": "npm run test -- --watchAll",
         "build-ts": "tsc",
         "watch-ts": "tsc -w",
-        "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
-        "copy-static-assets": "ts-node copyStaticAssets.ts",
+        "lint": "tsc --noEmit && eslint \"**/*.ts\" --quiet --fix",
+        "copy-static-assets": "mkdir dist/public && cp -R src/public/vendor dist/public && cp src/public/favicon.png dist/public",
         "debug": "npm run build && npm run watch-debug",
         "serve-debug": "nodemon --inspect dist/server.js",
         "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
@@ -30,9 +30,8 @@
         "semi": false
     },
     "dependencies": {
-        "@azure/storage-queue": "^10.3.0",
+        "@azure/storage-queue": "^12.0.0",
         "async": "^3.1.0",
-        "bcrypt-nodejs": "^0.0.3",
         "bluebird": "^3.7.1",
         "body-parser": "^1.19.0",
         "compression": "^1.7.4",
@@ -44,21 +43,18 @@
         "express-handlebars": "^3.1.0",
         "express-session": "^1.17.0",
         "express-validator": "^6.2.0",
-        "fbgraph": "^1.4.4",
-        "install": "^0.13.0",
         "lusca": "^1.6.1",
         "mongoose": "^5.7.10",
         "nodemailer": "^6.3.1",
-        "npm": "^6.13.0",
         "passport": "^0.4.0",
         "passport-local": "^1.0.0",
         "request": "^2.88.0",
         "request-promise": "^4.2.5",
+        "userscope-data-models": "^1.0.0",
         "winston": "^3.2.1"
     },
     "devDependencies": {
         "@types/async": "^3.0.3",
-        "@types/bcrypt-nodejs": "^0.0.30",
         "@types/bluebird": "^3.5.29",
         "@types/body-parser": "^1.17.1",
         "@types/chai": "^4.2.4",
@@ -74,7 +70,6 @@
         "@types/express-handlebars": "^3.1.0",
         "@types/express-session": "^1.15.15",
         "@types/jest": "^24.0.22",
-        "@types/jquery": "^3.3.31",
         "@types/lusca": "^1.6.1",
         "@types/mongoose": "^5.5.30",
         "@types/node": "^12.12.7",
@@ -83,7 +78,6 @@
         "@types/passport-local": "^1.0.33",
         "@types/request": "^2.48.3",
         "@types/request-promise": "^4.1.44",
-        "@types/shelljs": "^0.8.6",
         "@types/supertest": "^2.0.8",
         "@types/winston": "^2.4.4",
         "@typescript-eslint/eslint-plugin": "^2.7.0",
@@ -96,10 +90,8 @@
         "jest": "^24.9.0",
         "nodemon": "^1.19.4",
         "prettier": "^1.19.1",
-        "shelljs": "^0.8.3",
         "supertest": "^4.0.2",
         "ts-jest": "^24.1.0",
-        "ts-node": "^8.5.0",
         "typescript": "^3.7.2"
     }
 }

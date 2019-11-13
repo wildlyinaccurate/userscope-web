@@ -7,7 +7,7 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "baseUrl": ".",
+        "baseUrl": "./src",
         "alwaysStrict": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
