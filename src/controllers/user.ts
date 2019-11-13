@@ -5,7 +5,7 @@ import passport from "passport"
 import { UserDocument, AuthToken } from "userscope-data-models"
 import { Request, Response, NextFunction } from "express"
 import { WriteError } from "mongodb"
-import { check, sanitize, validationResult } from "express-validator"
+import { check, validationResult } from "express-validator"
 import "../config/passport"
 import { User } from "../models/User"
 import { Team } from "../models/Team"
@@ -25,9 +25,6 @@ export const postLogin = async (req: Request, res: Response, next: NextFunction)
     .run(req)
   await check("password", "Password cannot be blank")
     .isLength({ min: 1 })
-    .run(req)
-  await sanitize("email")
-    .normalizeEmail({ gmail_remove_dots: false })
     .run(req)
 
   const errors = validationResult(req)
@@ -79,9 +76,6 @@ export const postSignup = async (req: Request, res: Response, next: NextFunction
   await check("confirmPassword", "Passwords do not match")
     .equals(req.body.password)
     .run(req)
-  await sanitize("email")
-    .normalizeEmail({ gmail_remove_dots: false })
-    .run(req)
 
   const errors = validationResult(req)
 
@@ -131,9 +125,6 @@ export const getAccount = (_: Request, res: Response) => {
 export const postUpdateProfile = async (req: Request, res: Response, next: NextFunction) => {
   await check("email", "Please enter a valid email address.")
     .isEmail()
-    .run(req)
-  await sanitize("email")
-    .normalizeEmail({ gmail_remove_dots: false })
     .run(req)
 
   const errors = validationResult(req)
@@ -312,10 +303,6 @@ export const getForgot = (req: Request, res: Response) => {
 export const postForgot = async (req: Request, res: Response, next: NextFunction) => {
   await check("email", "Please enter a valid email address.")
     .isEmail()
-    .run(req)
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  await sanitize("email")
-    .normalizeEmail({ gmail_remove_dots: false })
     .run(req)
 
   const errors = validationResult(req)
