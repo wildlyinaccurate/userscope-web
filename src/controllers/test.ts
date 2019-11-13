@@ -43,7 +43,7 @@ export const postRunTest = async (req: Request, res: Response) => {
       messageTimeToLive: 1 * 24 * 60 * 60
     })
 
-    req.flash("success", ["Your test has been scheduled. The results will be available soon."])
+    req.flash("success", [{ msg: "Your test has been scheduled. The results will be available soon." }])
     res.redirect(`/test/status/${testResult._id}`)
   } catch (error) {
     res.render("test/error", {
