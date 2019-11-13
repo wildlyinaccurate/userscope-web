@@ -2,7 +2,7 @@ import async from "async"
 import crypto from "crypto"
 import nodemailer from "nodemailer"
 import passport from "passport"
-import { UserDocument, AuthToken, teamSchema } from "userscope-data-models"
+import { UserDocument, AuthToken } from "userscope-data-models"
 import { Request, Response, NextFunction } from "express"
 import { WriteError } from "mongodb"
 import { check, sanitize, validationResult } from "express-validator"
@@ -122,7 +122,7 @@ export const postSignup = async (req: Request, res: Response, next: NextFunction
   })
 }
 
-export const getAccount = async (req: Request, res: Response) => {
+export const getAccount = (_: Request, res: Response) => {
   res.render("account/profile", {
     title: "Account Management"
   })
