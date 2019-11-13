@@ -4,7 +4,6 @@ import { JOB_QUEUE_NAME, STORAGE_ACCOUNT_NAME, STORAGE_ACCOUNT_KEY } from "../ut
 import { check, validationResult } from "express-validator"
 import { UserDocument } from "userscope-data-models"
 import { TestResult } from "../models/TestResult"
-import { Response } from "node-fetch"
 
 const account = STORAGE_ACCOUNT_NAME
 const accountKey = STORAGE_ACCOUNT_KEY
