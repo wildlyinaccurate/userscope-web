@@ -24,7 +24,7 @@ export const postLogin = async (req: Request, res: Response, next: NextFunction)
     .isEmail()
     .run(req)
   await check("password", "Password cannot be blank")
-    .isLength({ min: 1 })
+    .isLength({ min: 6 })
     .run(req)
 
   const errors = validationResult(req)
