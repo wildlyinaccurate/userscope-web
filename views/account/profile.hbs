@@ -1,45 +1,56 @@
 <div class="page-header">
-  <h3>Profile Information</h3>
+  <h1>My account</h1>
   <hr>
 </div>
-<form action="/account/profile" method="POST" class="form-horizontal"><input type="hidden" name="_csrf"
-    value="{{_csrf}}">
-  <div class="form-group row justify-content-md-center"><label for="email"
-      class="col-sm-3 col-form-label text-right font-weight-bold">Email</label>
-    <div class="col-sm-7"><input type="email" name="email" id="email" value="{{user.email}}" class="form-control"></div>
-  </div>
-  <div class="form-group row justify-content-md-center"><label for="name"
-      class="col-sm-3 col-form-label text-right font-weight-bold">Name</label>
-    <div class="col-sm-7"><input type="text" name="name" id="name" value="{{user.profile.name}}" class="form-control">
+
+<form action="/account/profile" method="POST" class="form-horizontal">
+  <input type="hidden" name="_csrf" value="{{_csrf}}">
+  <div class="form-group row justify-content-md-center">
+    <label for="email" class="col-sm-3 col-form-label text-right font-weight-bold">Email</label>
+    <div class="col-sm-7">
+      <input type="email" name="email" id="email" value="{{user.email}}" class="form-control">
     </div>
   </div>
-  <div class="form-group row justify-content-md-center"><label
-      class="col-sm-3 col-form-label text-right font-weight-bold">Gravatar</label>
-    <div class="col-sm-7"><img src="{{user.gravatar}}" width="100" height="100" alt="{{user.displayName}}"
-        class="profile"></div>
+  <div class="form-group row justify-content-md-center">
+    <label for="name" class="col-sm-3 col-form-label text-right font-weight-bold">Name</label>
+    <div class="col-sm-7">
+      <input type="text" name="name" id="name" value="{{user.profile.name}}" class="form-control">
+    </div>
   </div>
   <div class="form-group row justify-content-md-center">
-    <div class="col-sm-4"><button type="submit" class="btn btn btn-primary"><i class="fa fa-pencil"></i>Update
-        Profile</button></div>
+    <label class="col-sm-3 col-form-label text-right font-weight-bold">Gravatar</label>
+    <div class="col-sm-7">
+      <img src="{{user.gravatar}}" width="100" height="100" alt="{{user.displayName}}" class="profile">
+    </div>
+  </div>
+  <div class="form-group row justify-content-md-center">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn btn-primary">Update profile</button>
+    </div>
   </div>
 </form>
 <div class="page-header">
-  <h3>Change Password</h3>
+  <h3>Change password</h3>
   <hr>
 </div>
-<form action="/account/password" method="POST" class="form-horizontal"><input type="hidden" name="_csrf"
-    value="{{_csrf}}">
-  <div class="form-group row justify-content-md-center"><label for="password"
-      class="col-sm-3 col-form-label text-right font-weight-bold">New Password</label>
-    <div class="col-sm-7"><input type="password" name="password" id="password" class="form-control"></div>
-  </div>
-  <div class="form-group row justify-content-md-center"><label for="confirmPassword"
-      class="col-sm-3 col-form-label text-right font-weight-bold">Confirm Password</label>
-    <div class="col-sm-7"><input type="password" name="confirmPassword" id="confirmPassword" class="form-control"></div>
+<form action="/account/password" method="POST" class="form-horizontal">
+  <input type="hidden" name="_csrf" value="{{_csrf}}">
+  <div class="form-group row justify-content-md-center">
+    <label for="password" class="col-sm-3 col-form-label text-right font-weight-bold">New password</label>
+    <div class="col-sm-7">
+      <input type="password" name="password" id="password" class="form-control">
+    </div>
   </div>
   <div class="form-group row justify-content-md-center">
-    <div class="col-sm-4"><button type="submit" class="btn btn-primary"><i class="fa fa-lock"></i>Change
-        Password</button></div>
+    <label for="confirmPassword" class="col-sm-3 col-form-label text-right font-weight-bold">Confirm password</label>
+    <div class="col-sm-7">
+      <input type="password" name="confirmPassword" id="confirmPassword" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row justify-content-md-center">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-primary">Password</button>
+    </div>
   </div>
 </form>
 <div class="page-header">
@@ -48,9 +59,10 @@
 </div>
 <form action="/account/delete" method="POST" class="form-horizontal">
   <div class="form-group row justify-content-md-center">
-    <p class="offset-sm-3 col-sm-7">You can delete your account, but keep in mind this action is irreversible.</p><input
-      type="hidden" name="_csrf" value="{{_csrf}}">
-    <div class="col-sm-4"><button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>Delete my
-        account</button></div>
+    <p class="offset-sm-3 col-sm-7">You can delete your account, but keep in mind this action is irreversible.</p>
+    <input type="hidden" name="_csrf" value="{{_csrf}}">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-danger">Delete myaccount</button>
+    </div>
   </div>
 </form>

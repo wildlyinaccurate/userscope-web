@@ -1,0 +1,36 @@
+{{#if bbcA11y.results}}
+<h1>Test complete</h1>
+<h2>{{testResult.url}}</h2>
+<h3>{{bbcA11y.errorsFound}} errors found</h3>
+
+<ul>
+  {{#each bbcA11y.results as |result|}}
+  <li style="color: {{#if result.errors}}red{{else}}green{{/if}};">
+    {{result.standard.name}}
+    {{#if result.errors}}
+    <ul>
+      {{#each result.errors as |error|}}
+      <li>
+        {{#each error as |errorName|}}
+        {{#if @first}}
+        {{errorName}}
+        {{/if}}
+        {{/each}}
+        <ul>
+          {{#each error as |details|}}
+          {{#unless @first}}
+          <li>{{details.xpath}}</li>
+          {{/unless}}
+          {{/each}}
+        </ul>
+      </li>
+      {{/each}}
+    </ul>
+    {{/if}}
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<h1>Test in progress</h1>
+<h2>{{testResult.url}}</h2>
+{{/if}}
