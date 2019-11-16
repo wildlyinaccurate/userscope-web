@@ -32,5 +32,9 @@
 </ul>
 {{else}}
 <h1>Test in progress</h1>
-<h2>{{testResult.url}}</h2>
+<div class="progress" style="height: 50px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%;">
+    Testing {{testResult.url}}
+  </div>
+</div>
 {{/if}}
