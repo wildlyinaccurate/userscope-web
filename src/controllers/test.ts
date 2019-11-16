@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { StorageSharedKeyCredential, QueueServiceClient } from "@azure/storage-queue"
 import { JOB_QUEUE_NAME, STORAGE_ACCOUNT_NAME, STORAGE_ACCOUNT_KEY } from "../util/config"
 import { check, validationResult } from "express-validator"
-import { UserDocument } from "userscope-data-models"
+import { UserDocument, JobQueueMessage } from "userscope-data-models"
 import { TestResult } from "../models/TestResult"
 
 const account = STORAGE_ACCOUNT_NAME
@@ -32,13 +32,12 @@ export const postRunTest = async (req: Request, res: Response) => {
 
     await testResult.save()
 
-    const message = {
+    const message: JobQueueMessage = {
       testResultId: testResult._id,
       url: req.body.url
     }
 
     const encodedMessage = Buffer.from(JSON.stringify(message)).toString("base64")
-
     await queueClient.sendMessage(encodedMessage, {
       messageTimeToLive: 1 * 24 * 60 * 60
     })
