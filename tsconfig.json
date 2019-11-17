@@ -15,13 +15,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "strictBindCallApply": true,
-        "strictFunctionTypes": true,
-        "paths": {
-            "*": [
-                "node_modules/*",
-                "src/types/*"
-            ]
-        }
+        "strictFunctionTypes": true
     },
     "include": [
         "src/**/*"
