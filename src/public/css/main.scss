@@ -1,0 +1,31 @@
+$enable-responsive-font-sizes: true;
+$font-family-sans-serif: "Lato", sans-serif;
+$font-size-base: 1.1rem;
+
+@import "functions";
+@import "variables";
+@import "mixins";
+@import "root";
+@import "reboot";
+@import "type";
+@import "grid";
+@import "forms";
+@import "buttons";
+@import "transitions";
+@import "dropdown";
+@import "input-group";
+@import "nav";
+@import "navbar";
+@import "alert";
+@import "progress";
+@import "utilities";
+@import "print";
+
+body {
+  background-color: hsl(192, 17%, 95%);
+}
+
+.test-progress {
+    font-size: $font-size-lg;
+  height: 50px;
+}

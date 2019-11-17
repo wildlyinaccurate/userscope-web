@@ -10,20 +10,15 @@
   <meta name="csrf-token" content="{{ _csrf }}">
 
   <link rel="stylesheet" href="/vendor/bootstrap-4.3.1.min.css">
+  <link rel="stylesheet" href="/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: hsl(192, 17%, 95%);
-      font: 18px/1.2 "Lato", sans-serif;
-    }
-  </style>
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
   {{> header }}
 
-  <div class="container pt-3 pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
+  <div class="container pt-5 pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
     {{> flash }}
     {{{ body }}}
   </div>
