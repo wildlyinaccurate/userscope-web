@@ -9,13 +9,13 @@ export const getTest = async (req: Request, res: Response) => {
     const testResult = await TestResult.findById(req.params.testId)
 
     if (testResult) {
-    const user = req.user as UserDocument
+      const user = req.user as UserDocument
 
-    if ((!user && !testResult.team) || (user && user.team._id.toString() === testResult.team.toString())) {
-      res.json(testResult)
+      if ((!user && !testResult.team) || (user && user.team._id.toString() === testResult.team.toString())) {
+        res.json(testResult)
+      }
     }
   }
-}
 
   notFound(res)
 }

@@ -56,7 +56,7 @@ export const getTestStatus = async (req: Request, res: Response) => {
   const testResult = await TestResult.findById(req.params.testId)
 
   if (testResult) {
-    if ((!user && !testResult.team) || (user && user.team._id.toString() === testResult.team.toString())) {
+    if (!user || !testResult.team || (user && user.team._id.toString() === testResult.team.toString())) {
       const viewData = {
         testResult,
         title: "Test status",

@@ -1,6 +1,5 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-  "eslint.autoFixOnSave": true,
   "eslint.validate": [
     "javascript",
     { "language": "typescript", "autoFix": true }
@@ -23,5 +22,8 @@
   },
   "typescript.referencesCodeLens.enabled": true,
   "appService.zipIgnorePattern": [".vscode{,/**}"],
-  "appService.deploySubpath": ""
+  "appService.deploySubpath": "",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.autoFixOnSave": true,
+  "typescript.preferences.importModuleSpecifier": "relative"
 }

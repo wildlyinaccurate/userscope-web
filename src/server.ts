@@ -5,7 +5,9 @@ import app from "./app"
 /**
  * Error Handler. Provides full stack - remove for production
  */
-app.use(errorHandler())
+if (app.get("env") !== "production") {
+  app.use(errorHandler())
+}
 
 /**
  * Start Express server.

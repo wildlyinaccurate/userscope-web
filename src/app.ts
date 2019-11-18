@@ -9,7 +9,6 @@ import path from "path"
 import mongoose from "mongoose"
 import passport from "passport"
 import bluebird from "bluebird"
-import expressHandlebars from "express-handlebars"
 import { MONGODB_URI, SESSION_SECRET } from "./util/config"
 import mongo from "connect-mongo"
 const MongoStore = mongo(session)
@@ -47,9 +46,9 @@ if (fs.existsSync(`${__dirname}/../.revision`)) {
 
 // Express configuration
 app.set("port", process.env.PORT || 3000)
-app.set("views", path.join(__dirname, "../views"))
-app.engine("hbs", expressHandlebars({ extname: ".hbs" }))
-app.set("view engine", "hbs")
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "js")
+app.engine("js", require("express-react-views").createEngine())
 app.use(compression())
 app.use(express.static(path.join(__dirname, "public"), { maxAge: "6 months" }))
 app.use(bodyParser.json())
