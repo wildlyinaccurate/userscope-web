@@ -1,6 +1,6 @@
 import fs from "fs"
 import express from "express"
-import compression from "compression" // compresses requests
+import compression from "compression"
 import session from "express-session"
 import bodyParser from "body-parser"
 import lusca from "lusca"
@@ -14,10 +14,13 @@ import { MONGODB_URI, SESSION_SECRET } from "./util/config"
 import mongo from "connect-mongo"
 const MongoStore = mongo(session)
 
-// Controllers (route handlers)
+// UI controllers
 import * as homeController from "./controllers/home"
 import * as userController from "./controllers/user"
 import * as testController from "./controllers/test"
+
+// API controllers
+import * as testApiController from "./controllers/api/test"
 
 // API keys and Passport configuration
 import * as passportConfig from "./config/passport"
@@ -99,8 +102,15 @@ app.post("/account/profile", passportConfig.isAuthenticated, userController.post
 app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword)
 app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount)
 
-// Action routes
+// Test routes
 app.post("/test/run", testController.postRunTest)
 app.get("/test/status/:testId", testController.getTestStatus)
+
+// JSON API
+const apiRouter = express.Router()
+
+app.use("/api/v0", apiRouter)
+
+apiRouter.get("/test/:testId", testApiController.getTest)
 
 export default app
