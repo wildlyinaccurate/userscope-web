@@ -10,14 +10,14 @@ interface FooterProps {
   revision: string
 }
 
-const Footer = (props: FooterProps) => (
-  <footer className="mt-5 py-5">
-    <div className="container text-center">
-      <small>
-        {props.package.name} v{props.package.version} {props.revision}
-      </small>
-    </div>
-  </footer>
-)
-
-export default Footer
+export default function Footer(props: FooterProps) {
+  return (
+    <footer className="mt-5 py-5">
+      <div className="container text-center">
+        <small>
+          {props.package.name} v{props.package.version} {props.revision}
+        </small>
+      </div>
+    </footer>
+  )
+}

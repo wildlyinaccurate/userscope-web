@@ -14,7 +14,7 @@ interface MessageContainerProps {
   messages?: FlashMessage[]
 }
 
-const MessageContainer = (props: MessageContainerProps) => {
+function MessageContainer(props: MessageContainerProps) {
   if (!props.messages) {
     return null
   }
@@ -35,12 +35,12 @@ interface FlashMessagesProps {
   messages: FlashMessageContainer
 }
 
-const FlashMessages = (props: FlashMessagesProps) => (
-  <Fragment>
-    <MessageContainer alertType="danger" messages={props.messages.errors} />
-    <MessageContainer alertType="info" messages={props.messages.info} />
-    <MessageContainer alertType="success" messages={props.messages.success} />
-  </Fragment>
-)
-
-export default FlashMessages
+export default function FlashMessages(props: FlashMessagesProps) {
+  return (
+    <Fragment>
+      <MessageContainer alertType="danger" messages={props.messages.errors} />
+      <MessageContainer alertType="info" messages={props.messages.info} />
+      <MessageContainer alertType="success" messages={props.messages.success} />
+    </Fragment>
+  )
+}

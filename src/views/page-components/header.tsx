@@ -5,7 +5,7 @@ interface ProfileNavProps {
   user: UserDocument
 }
 
-const ProfileNav = (props: ProfileNavProps) => {
+function ProfileNav(props: ProfileNavProps) {
   if (props.user) {
     return (
       <ul className="nav navbar-nav">
@@ -58,32 +58,32 @@ interface HeaderProps {
   user: UserDocument
 }
 
-const Header = (props: HeaderProps) => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div className="container">
-      <a href="/" className="navbar-brand">
-        UserScope
-      </a>
+export default function Header(props: HeaderProps) {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <a href="/" className="navbar-brand">
+          UserScope
+        </a>
 
-      <button type="button" data-toggle="collapse" data-target=".navbar-collapse" className="navbar-toggler">
-        <span className="navbar-toggler-icon"></span>
-      </button>
+        <button type="button" data-toggle="collapse" data-target=".navbar-collapse" className="navbar-toggler">
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-      <div className="collapse navbar-collapse">
-        <div className="dropdown-divider"></div>
+        <div className="collapse navbar-collapse">
+          <div className="dropdown-divider"></div>
 
-        <ul className="nav navbar-nav mr-auto">
-          <li className="nav-item">
-            <a href="/" className="nav-link">
-              Home
-            </a>
-          </li>
-        </ul>
+          <ul className="nav navbar-nav mr-auto">
+            <li className="nav-item">
+              <a href="/" className="nav-link">
+                Home
+              </a>
+            </li>
+          </ul>
 
-        <ProfileNav user={props.user} />
+          <ProfileNav user={props.user} />
+        </div>
       </div>
-    </div>
-  </nav>
-)
-
-export default Header
+    </nav>
+  )
+}

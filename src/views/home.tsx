@@ -3,46 +3,48 @@ import MainLayout, { MainLayoutProps } from "./layouts/main"
 
 type HomeViewProps = MainLayoutProps
 
-const chartScript = <ChartScript />
+export default function HomeView(props: HomeViewProps) {
+  const chartScript = <ChartScript />
 
-const HomeView = (props: HomeViewProps) => (
-  <MainLayout {...props} scripts={chartScript}>
-    <div className="row my-4">
-      <div className="col-md-6 py-lg-4 mx-auto">
-        <h2 className="display-4">Deliver great user experiences that anyone can enjoy</h2>
-        <p className="lead">Monitor your web site accessibility over time and get actionable insights.</p>
+  return (
+    <MainLayout {...props} scripts={chartScript}>
+      <div className="row my-4">
+        <div className="col-md-6 py-lg-4 mx-auto">
+          <h2 className="display-4">Deliver great user experiences that anyone can enjoy</h2>
+          <p className="lead">Monitor your web site accessibility over time and get actionable insights.</p>
+        </div>
+        <div className="col-md-6 py-lg-4 mt-4">
+          <canvas id="sample-chart"></canvas>
+        </div>
       </div>
-      <div className="col-md-6 py-lg-4 mt-4">
-        <canvas id="sample-chart"></canvas>
-      </div>
-    </div>
 
-    <div className="row justify-content-sm-center">
-      <div className="col-md-8">
-        <h3 className="my-3">Get a free accessibility report now</h3>
+      <div className="row justify-content-sm-center">
+        <div className="col-md-8">
+          <h3 className="my-3">Get a free accessibility report now</h3>
 
-        <form action="/test/run" method="POST">
-          <input type="hidden" name="_csrf" value={props._csrf} />
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              name="url"
-              placeholder="Enter a URL to generate a report"
-              aria-label="URL to test"
-              aria-describedby="generate-report-btn"
-              className="form-control"
-            />
-            <div className="input-group-append">
-              <button type="submit" id="generate-report-btn" className="btn btn-primary">
-                Generate Report
-              </button>
+          <form action="/test/run" method="POST">
+            <input type="hidden" name="_csrf" value={props._csrf} />
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                name="url"
+                placeholder="Enter a URL to generate a report"
+                aria-label="URL to test"
+                aria-describedby="generate-report-btn"
+                className="form-control"
+              />
+              <div className="input-group-append">
+                <button type="submit" id="generate-report-btn" className="btn btn-primary">
+                  Generate Report
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
-  </MainLayout>
-)
+    </MainLayout>
+  )
+}
 
 function ChartScript() {
   return (
@@ -116,5 +118,3 @@ function ChartScript() {
     </Fragment>
   )
 }
-
-export default HomeView
