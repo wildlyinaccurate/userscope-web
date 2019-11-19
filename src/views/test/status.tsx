@@ -21,7 +21,9 @@ const TestErrors = (props: TestErrorsProps) => {
 
   const errorDetails = props.errors.map(testingError => (
     <div className="alert alert-danger">
-      <p><b>{testingError.message}</b></p>
+      <p>
+        <b>{testingError.message}</b>
+      </p>
       <TestErrorDetails message={testingError.error.message} />
     </div>
   ))
@@ -58,21 +60,16 @@ const BbcA11yResultErrorDetails = (props: BbcA11yResultErrorDetailsProps) => {
   }
 
   if (props.error.length === 1) {
-    return (
-      <li>{props.error[0]}</li>
-    )
+    return <li>{props.error[0]}</li>
   }
 
-  const errorPaths = props.error.slice(1).map((error: BbcA11yErrorSelector) => (
-    <li>{error.xpath}</li>
-  ))
+  const selectors = props.error.slice(1) as BbcA11yErrorSelector[]
+  const errorPaths = selectors.map(error => <li>{error.xpath}</li>)
 
   return (
     <li>
       {props.error[0]}
-      <ul>
-        {errorPaths}
-      </ul>
+      <ul>{errorPaths}</ul>
     </li>
   )
 
@@ -100,7 +97,9 @@ const BbcA11yResults = (props: BbcA11yResultsProps) => {
     if (result.errors.length) {
       errorDetails = (
         <ul>
-          {result.errors.map(error => <BbcA11yResultErrorDetails error={error} />)}
+          {result.errors.map(error => (
+            <BbcA11yResultErrorDetails error={error} />
+          ))}
         </ul>
       )
     }
@@ -119,9 +118,7 @@ const BbcA11yResults = (props: BbcA11yResultsProps) => {
       <h2>{props.url}</h2>
       <h3>{props.errorsFound} errors found</h3>
 
-      <ul>
-        {resultItems}
-      </ul>
+      <ul>{resultItems}</ul>
     </Fragment>
   )
 }
@@ -160,8 +157,12 @@ const TestStatusView = (props: TestStatusViewProps) => (
   <MainLayout {...props}>
     <TestingInProgress testResult={props.testResult} />
     <TestErrors errors={props.testResult.testingErrors} />
-    <BbcA11yResults url={props.testResult.url} results={props.bbcA11y.results} errorsFound={props.bbcA11y.errorsFound} />
-  </MainLayout >
+    <BbcA11yResults
+      url={props.testResult.url}
+      results={props.bbcA11y.results}
+      errorsFound={props.bbcA11y.errorsFound}
+    />
+  </MainLayout>
 )
 
 export default TestStatusView
