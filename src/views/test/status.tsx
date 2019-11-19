@@ -20,7 +20,7 @@ const TestErrors = (props: TestErrorsProps) => {
   }
 
   const errorDetails = props.errors.map(testingError => (
-    <div className="alert alert-danger">
+    <div key={testingError.message} className="alert alert-danger">
       <p>
         <b>{testingError.message}</b>
       </p>
@@ -98,7 +98,7 @@ const BbcA11yResults = (props: BbcA11yResultsProps) => {
       errorDetails = (
         <ul>
           {result.errors.map(error => (
-            <BbcA11yResultErrorDetails error={error} />
+            <BbcA11yResultErrorDetails key={error[0]} error={error} />
           ))}
         </ul>
       )
