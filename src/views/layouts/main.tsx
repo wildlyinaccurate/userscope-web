@@ -1,7 +1,7 @@
 import React, { ReactNode, PropsWithChildren } from "react"
-import Header from "../partials/header"
-import FlashMessages, { FlashMessageContainer } from "../partials/flash"
-import Footer, { IPartialPackage } from "../partials/footer"
+import Header from "../page-components/header"
+import FlashMessages, { FlashMessageContainer } from "../page-components/flash"
+import Footer, { IPartialPackage } from "../page-components/footer"
 import { UserDocument } from "userscope-data-models"
 
 export interface MainLayoutProps {
