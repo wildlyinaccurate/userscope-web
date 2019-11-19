@@ -15,7 +15,7 @@ const HomeView = (props: HomeViewProps) => (
       <div className="col-md-6 py-lg-4 mt-4">
         <canvas id="sample-chart"></canvas>
       </div>
-    </div >
+    </div>
 
     <div className="row justify-content-sm-center">
       <div className="col-md-8">
@@ -24,10 +24,18 @@ const HomeView = (props: HomeViewProps) => (
         <form action="/test/run" method="POST">
           <input type="hidden" name="_csrf" value={props._csrf} />
           <div className="input-group mb-3">
-            <input type="text" name="url" placeholder="Enter a URL to generate a report" aria-label="URL to test"
-              aria-describedby="generate-report-btn" className="form-control" />
+            <input
+              type="text"
+              name="url"
+              placeholder="Enter a URL to generate a report"
+              aria-label="URL to test"
+              aria-describedby="generate-report-btn"
+              className="form-control"
+            />
             <div className="input-group-append">
-              <button type="submit" id="generate-report-btn" className="btn btn-primary">Generate Report</button>
+              <button type="submit" id="generate-report-btn" className="btn btn-primary">
+                Generate Report
+              </button>
             </div>
           </div>
         </form>
@@ -39,8 +47,9 @@ const HomeView = (props: HomeViewProps) => (
 function ChartScript() {
   return (
     <Fragment>
-      <script dangerouslySetInnerHTML={{
-        __html: `
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
       const canvas = document.getElementById("sample-chart")
       if (canvas) {
         const ctx = canvas.getContext("2d")
@@ -101,7 +110,9 @@ function ChartScript() {
         }
         const sampleChart = new Chart(ctx, config)
       }
-    `}} />
+    `
+        }}
+      />
     </Fragment>
   )
 }

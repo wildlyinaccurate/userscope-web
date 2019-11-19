@@ -64,7 +64,7 @@ const BbcA11yResultErrorDetails = (props: BbcA11yResultErrorDetailsProps) => {
   }
 
   const selectors = props.error.slice(1) as BbcA11yErrorSelector[]
-  const errorPaths = selectors.map(error => <li>{error.xpath}</li>)
+  const errorPaths = selectors.map(error => <li key={error.xpath}>{error.xpath}</li>)
 
   return (
     <li>

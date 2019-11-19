@@ -19,8 +19,10 @@ const MainLayout = (props: PropsWithChildren<MainLayoutProps>) => (
     <head>
       <meta charSet="utf-8" />
       <title>{props.title} - UserScope</title>
-      <meta name="description"
-        content="UserScope is an automated accessibility testing tool. Get valuable insights and track your site's accessibility over time." />
+      <meta
+        name="description"
+        content="UserScope is an automated accessibility testing tool. Get valuable insights and track your site's accessibility over time."
+      />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="csrf-token" content={props._csrf} />
       <meta name="theme-color" content="#fafafa" />

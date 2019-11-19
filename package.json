@@ -21,7 +21,7 @@
         "build-sass": "node-sass --include-path node_modules/bootstrap/scss --output-style compressed src/public/css/main.scss dist/public/css/main.css",
         "watch-sass": "node-sass --include-path node_modules/bootstrap/scss -w src/public/css/main.scss dist/public/css/main.css",
         "lint": "npm run lint-ts && npm run lint-scss",
-        "lint-ts": "tsc --noEmit && eslint \"**/*.ts\" --quiet --fix",
+        "lint-ts": "tsc --noEmit && eslint \"**/*.{ts,tsx}\" --quiet --fix",
         "lint-scss": "prettier --write src/public/css/*.scss",
         "copy-static-assets": "shx mkdir -p dist/public && shx cp -R src/public/vendor dist/public && shx cp src/public/favicon.png dist/public",
         "debug": "npm run build && npm run watch-debug",

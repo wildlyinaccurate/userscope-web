@@ -14,17 +14,38 @@ const ResetPasswordView = (props: ResetPasswordViewProps) => (
       <form method="POST">
         <input type="hidden" name="_csrf" value={props._csrf} />
         <div className="form-group">
-          <label htmlFor="password" className="col-form-label font-weight-bold">New Password</label>
-          <input type="password" name="password" id="password" placeholder="New password" autoFocus required className="form-control" />
+          <label htmlFor="password" className="col-form-label font-weight-bold">
+            New Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="New password"
+            autoFocus
+            required
+            className="form-control"
+          />
         </div>
 
         <div className="form-group">
-          <label htmlFor="confirm" className="col-form-label font-weight-bold">Confirm Password</label>
-          <input type="password" name="confirm" id="confirm" placeholder="Confirm password" required className="form-control" />
+          <label htmlFor="confirm" className="col-form-label font-weight-bold">
+            Confirm Password
+          </label>
+          <input
+            type="password"
+            name="confirm"
+            id="confirm"
+            placeholder="Confirm password"
+            required
+            className="form-control"
+          />
         </div>
 
         <div className="form-group">
-          <button type="submit" className="btn btn-primary btn-reset">Change password</button>
+          <button type="submit" className="btn btn-primary btn-reset">
+            Change password
+          </button>
         </div>
       </form>
     </div>
