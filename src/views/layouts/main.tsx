@@ -1,7 +1,7 @@
 import React, { ReactNode, PropsWithChildren } from "react"
 import Header from "../page-components/header"
 import FlashMessages, { FlashMessageContainer } from "../page-components/flash"
-import Footer, { IPartialPackage } from "../page-components/footer"
+import Footer, { PartialPackage } from "../page-components/footer"
 import { UserDocument } from "userscope-data-models"
 
 export interface MainLayoutProps {
@@ -9,7 +9,7 @@ export interface MainLayoutProps {
   user: UserDocument
   messages: FlashMessageContainer
   scripts?: ReactNode
-  package: IPartialPackage
+  package: PartialPackage
   revision?: string
   _csrf: string
 }

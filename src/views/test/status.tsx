@@ -40,8 +40,6 @@ function BbcA11yResultErrorDetails(props: BbcA11yResultErrorDetailsProps) {
       <ul>{errorPaths}</ul>
     </li>
   )
-
-  return null
 }
 
 type BbcA11yResultsProps = {
