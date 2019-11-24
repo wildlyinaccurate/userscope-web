@@ -109,6 +109,7 @@ app.post("/account/delete", passportConfig.isAuthenticated, userController.postD
 // Test routes
 app.post("/test/run", testController.postRunTest)
 app.get("/test/status/:testId", testController.getTestStatus)
+app.get("/test/history", passportConfig.isAuthenticated, testController.getTestHistory)
 
 // JSON API
 const apiRouter = express.Router()

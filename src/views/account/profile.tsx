@@ -1,15 +1,13 @@
 import React from "react"
 import MainLayout, { MainLayoutProps } from "../layouts/main"
+import { PageHeading, SectionHeading } from "../page-components/headings"
 
 type ProfileViewProps = MainLayoutProps
 
 export default function ProfileView(props: ProfileViewProps) {
   return (
     <MainLayout {...props}>
-      <div className="page-header">
-        <h1>My account</h1>
-        <hr />
-      </div>
+      <PageHeading title="My account" />
 
       <form action="/account/profile" method="POST" className="form-horizontal">
         <input type="hidden" name="_csrf" value={props._csrf} />
@@ -49,10 +47,9 @@ export default function ProfileView(props: ProfileViewProps) {
           </div>
         </div>
       </form>
-      <div className="page-header">
-        <h3>Change password</h3>
-        <hr />
-      </div>
+
+      <SectionHeading title="Change password" />
+
       <form action="/account/password" method="POST" className="form-horizontal">
         <input type="hidden" name="_csrf" value={props._csrf} />
         <div className="form-group row justify-content-md-center">
@@ -79,10 +76,9 @@ export default function ProfileView(props: ProfileViewProps) {
           </div>
         </div>
       </form>
-      <div className="page-header">
-        <h3>Delete Account</h3>
-        <hr />
-      </div>
+
+      <SectionHeading title="Delete account" />
+
       <form action="/account/delete" method="POST" className="form-horizontal">
         <div className="form-group row justify-content-md-center">
           <p className="offset-sm-3 col-sm-7">

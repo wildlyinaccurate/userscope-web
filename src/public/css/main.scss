@@ -2,24 +2,26 @@ $enable-responsive-font-sizes: true;
 $font-family-sans-serif: "Lato", sans-serif;
 $font-size-base: 1.1rem;
 
-@import "functions";
-@import "variables";
-@import "mixins";
-@import "root";
-@import "reboot";
-@import "type";
-@import "grid";
-@import "forms";
-@import "buttons";
-@import "transitions";
-@import "dropdown";
-@import "input-group";
-@import "nav";
-@import "navbar";
-@import "alert";
-@import "progress";
-@import "utilities";
-@import "print";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/input-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/print";
 
 body {
   background-color: hsl(192, 17%, 95%);
@@ -28,4 +30,13 @@ body {
 .test-progress {
   font-size: $font-size-lg;
   height: 50px;
+}
+
+.MuiSvgIcon-root {
+  display: inline-block;
+  fill: currentColor;
+  font-size: $font-size-lg;
+  height: 1em;
+  vertical-align: inherit;
+  width: 1em;
 }

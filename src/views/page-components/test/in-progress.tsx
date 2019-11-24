@@ -14,8 +14,8 @@ export default function TestingInProgress(props: TestingInProgressProps) {
     <Fragment>
       <h1>Test in progress</h1>
       <div className="progress test-progress">
-        <div className="progress-bar progress-bar-striped progress-bar-animated" style={{ width: "100%" }}>
-          Testing {props.testResult.url}
+        <div className="progress-bar progress-bar-striped progress-bar-animated px-3" style={{ width: "100%" }}>
+          <span className="text-truncate">Testing {props.testResult.url}</span>
         </div>
       </div>
     </Fragment>

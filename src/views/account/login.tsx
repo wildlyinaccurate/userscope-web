@@ -1,15 +1,14 @@
 import React from "react"
 import MainLayout, { MainLayoutProps } from "../layouts/main"
+import { PageHeading } from "../page-components/headings"
 
 type LoginViewProps = MainLayoutProps
 
 export default function LoginView(props: LoginViewProps) {
   return (
     <MainLayout {...props}>
-      <div className="page-header">
-        <h1>Sign in</h1>
-        <hr />
-      </div>
+      <PageHeading title="Sign in" />
+
       <form method="POST" className="form-horizontal">
         <input type="hidden" name="_csrf" value={props._csrf} />
         <div className="form-group row justify-content-md-center">

@@ -1,8 +1,38 @@
 import React, { Fragment } from "react"
 import MainLayout, { MainLayoutProps } from "../layouts/main"
 import { TestResultDocument } from "userscope-data-models"
-import TestingInProgress from "views/page-components/test/in-progress"
-import TestErrors from "views/page-components/test/errors"
+import TestingInProgress from "../page-components/test/in-progress"
+import TestErrors from "../page-components/test/errors"
+import PassedAudit from "../page-components/test/passed-audit"
+import FailedAudit from "../page-components/test/failed-audit"
+
+type AuditBySection = {
+  [key: string]: BbcA11yResultItem[]
+}
+
+function auditsBySection(audits: BbcA11yResultItem[]): AuditBySection {
+  const sections: AuditBySection = {}
+
+  audits.forEach(audit => {
+    const section = audit.standard.section
+
+    if (!sections.hasOwnProperty(section)) {
+      sections[section] = []
+    }
+
+    sections[section].push(audit)
+  })
+
+  return sections
+}
+
+function passedAudits(audits: BbcA11yResultItem[]) {
+  return audits.filter(audit => audit.errors.length === 0)
+}
+
+function failedAudits(audits: BbcA11yResultItem[]) {
+  return audits.filter(audit => audit.errors.length > 0)
+}
 
 type BbcA11yErrorSelector = {
   xpath: string
@@ -18,30 +48,6 @@ type BbcA11yResultItem = {
   errors: BbcA11yResultError[]
 }
 
-interface BbcA11yResultErrorDetailsProps {
-  error: BbcA11yResultError
-}
-
-function BbcA11yResultErrorDetails(props: BbcA11yResultErrorDetailsProps) {
-  if (!props.error) {
-    return null
-  }
-
-  if (props.error.length === 1) {
-    return <li>{props.error[0]}</li>
-  }
-
-  const selectors = props.error.slice(1) as BbcA11yErrorSelector[]
-  const errorPaths = selectors.map(error => <li key={error.xpath}>{error.xpath}</li>)
-
-  return (
-    <li>
-      {props.error[0]}
-      <ul>{errorPaths}</ul>
-    </li>
-  )
-}
-
 type BbcA11yResultsProps = {
   url: string
   errorsFound: number
@@ -53,37 +59,48 @@ function BbcA11yResults(props: BbcA11yResultsProps) {
     return null
   }
 
-  const resultItems = props.results.map(result => {
-    const resultStyle = {
-      color: result.errors.length ? "red" : "green"
-    }
-
-    let errorDetails = null
-
-    if (result.errors.length) {
-      errorDetails = (
-        <ul>
-          {result.errors.map(error => (
-            <BbcA11yResultErrorDetails key={error[0]} error={error} />
-          ))}
-        </ul>
-      )
-    }
-
-    return (
-      <li key={result.standard.name} style={resultStyle}>
-        {result.standard.name}
-        {errorDetails}
-      </li>
-    )
-  })
+  const passedSections = auditsBySection(passedAudits(props.results))
+  const failedSections = auditsBySection(failedAudits(props.results))
 
   return (
     <Fragment>
-      <h1>Test complete</h1>
-      <h2>{props.url}</h2>
-      <h3>{props.errorsFound} errors found</h3>
-      <ul>{resultItems}</ul>
+      <div className="row">
+        <div className="col-md-6">
+          <h1>Test results</h1>
+          <h2>{props.errorsFound} accessibility issues found</h2>
+        </div>
+        <div className="col-md-6 text-right">
+          <p className="lead text-muted text-truncate" title={props.url}>
+            {props.url}
+          </p>
+        </div>
+      </div>
+
+      {Object.entries(failedSections).map(([sectionName, results]) => (
+        <div key={sectionName} className="mt-3">
+          <h3>{sectionName}</h3>
+          <div className="row">
+            {results.map(result => (
+              <div className="col-sm-6" key={result.standard.name}>
+                <FailedAudit name={result.standard.name} errors={result.errors} />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {Object.entries(passedSections).map(([sectionName, results]) => (
+        <div key={sectionName} className="mt-3">
+          <h3>{sectionName}</h3>
+          <div className="row">
+            {results.map(result => (
+              <div className="col-sm-6" key={result.standard.name}>
+                <PassedAudit name={result.standard.name} />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </Fragment>
   )
 }

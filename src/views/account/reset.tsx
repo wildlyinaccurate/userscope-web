@@ -1,15 +1,13 @@
 import React from "react"
 import MainLayout, { MainLayoutProps } from "../layouts/main"
+import { PageHeading } from "../page-components/headings"
 
 type ResetPasswordViewProps = MainLayoutProps
 
 export default function ResetPasswordView(props: ResetPasswordViewProps) {
   return (
     <MainLayout {...props}>
-      <div className="page-header">
-        <h1>Reset password</h1>
-        <hr />
-      </div>
+      <PageHeading title="Reset password" />
 
       <div className="col-sm-8 offset-sm-2">
         <form method="POST">

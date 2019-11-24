@@ -5,11 +5,12 @@ import { check, validationResult } from "express-validator"
 import { UserDocument, JobQueueMessage } from "userscope-data-models"
 import { TestResult } from "../models/TestResult"
 
-const account = STORAGE_ACCOUNT_NAME
-const accountKey = STORAGE_ACCOUNT_KEY
-const sharedKeyCredential = new StorageSharedKeyCredential(account, accountKey)
-const queueServiceClient = new QueueServiceClient(`https://${account}.queue.core.windows.net`, sharedKeyCredential)
-const queueClient = queueServiceClient.getQueueClient(JOB_QUEUE_NAME)
+export const getTestHistory = async (req: Request, res: Response) => {
+  const user = req.user as UserDocument
+  const tests = await TestResult.find({ team: user.team }).sort({ createdAt: -1 })
+
+  res.render("test/history", { title: "Test History", tests })
+}
 
 export const postRunTest = async (req: Request, res: Response) => {
   await check("url", "A valid URL is required")
@@ -22,6 +23,12 @@ export const postRunTest = async (req: Request, res: Response) => {
     req.flash("errors", errors.array())
     return res.redirect("/")
   }
+
+  const account = STORAGE_ACCOUNT_NAME
+  const accountKey = STORAGE_ACCOUNT_KEY
+  const sharedKeyCredential = new StorageSharedKeyCredential(account, accountKey)
+  const queueServiceClient = new QueueServiceClient(`https://${account}.queue.core.windows.net`, sharedKeyCredential)
+  const queueClient = queueServiceClient.getQueueClient(JOB_QUEUE_NAME)
 
   try {
     const user = req.user as UserDocument

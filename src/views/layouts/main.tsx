@@ -28,7 +28,6 @@ export default function MainLayout(props: PropsWithChildren<MainLayoutProps>) {
         <meta name="csrf-token" content={props._csrf} />
         <meta name="theme-color" content="#fafafa" />
 
-        <link rel="stylesheet" href="/vendor/bootstrap-4.3.1.min.css" />
         <link rel="stylesheet" href="/css/main.css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet" />
       </head>

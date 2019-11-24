@@ -1,15 +1,13 @@
 import React from "react"
 import MainLayout, { MainLayoutProps } from "../layouts/main"
+import { PageHeading } from "../page-components/headings"
 
 type SignupViewProps = MainLayoutProps
 
 export default function SignupView(props: SignupViewProps) {
   return (
     <MainLayout {...props}>
-      <div className="page-header">
-        <h3>Sign up</h3>
-        <hr />
-      </div>
+      <PageHeading title="Sign up" />
 
       <form id="signup-form" method="POST" className="form-horizontal">
         <input type="hidden" name="_csrf" value={props._csrf} />

@@ -1,15 +1,13 @@
 import React from "react"
 import MainLayout, { MainLayoutProps } from "../layouts/main"
+import { PageHeading } from "../page-components/headings"
 
 type ForgotPasswordViewProps = MainLayoutProps
 
 export default function ForgotPasswordView(props: ForgotPasswordViewProps) {
   return (
     <MainLayout {...props}>
-      <div className="page-header">
-        <h1>Forgot password</h1>
-        <hr />
-      </div>
+      <PageHeading title="Forgot password" />
 
       <div className="col-sm-8 offset-sm-2">
         <form method="POST">
