@@ -7,7 +7,7 @@ import { TestResult } from "../models/TestResult"
 
 export const getTestHistory = async (req: Request, res: Response) => {
   const user = req.user as UserDocument
-  const tests = await TestResult.find({ team: user.team }).sort({ createdAt: -1 })
+  const tests = await TestResult.find({ team: user.team })
 
   res.render("test/history", { title: "Test History", tests })
 }
