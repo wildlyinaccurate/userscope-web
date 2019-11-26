@@ -52,7 +52,7 @@ function ProfileNav(props: ProfileNavProps) {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {props.user.displayName}
+            {props.user.displayName()}
           </button>
           <ul className="dropdown-menu bg-dark border-dark" aria-labelledby="profile-menu-dropdown">
             <li className="nav-item">
