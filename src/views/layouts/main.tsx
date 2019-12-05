@@ -1,4 +1,4 @@
-import React, { ReactNode, PropsWithChildren } from "react"
+import React, { ReactNode, PropsWithChildren, FunctionComponent } from "react"
 import Header from "../page-components/header"
 import FlashMessages, { FlashMessageContainer } from "../page-components/flash"
 import Footer, { PartialPackage } from "../page-components/footer"
@@ -11,10 +11,13 @@ export interface MainLayoutProps {
   scripts?: ReactNode
   package: PartialPackage
   revision?: string
+  wrappingContainer: boolean
   _csrf: string
 }
 
-export default function MainLayout(props: PropsWithChildren<MainLayoutProps>) {
+const MainLayout: FunctionComponent<MainLayoutProps> = function(props: PropsWithChildren<MainLayoutProps>) {
+  const containerClasses = props.wrappingContainer ? "container pt-5" : null
+
   return (
     <html className="no-js" lang="en">
       <head>
@@ -35,7 +38,7 @@ export default function MainLayout(props: PropsWithChildren<MainLayoutProps>) {
       <body>
         <Header user={props.user} />
 
-        <div className="container pt-5 pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
+        <div className={containerClasses}>
           <FlashMessages messages={props.messages} />
           {props.children}
         </div>
@@ -51,3 +54,9 @@ export default function MainLayout(props: PropsWithChildren<MainLayoutProps>) {
     </html>
   )
 }
+
+MainLayout.defaultProps = {
+  wrappingContainer: true
+}
+
+export default MainLayout
