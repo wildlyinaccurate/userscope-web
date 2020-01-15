@@ -23,10 +23,12 @@ function MessageContainer(props: MessageContainerProps) {
 
   return (
     <div className={`alert alert-${props.alertType} fade show`}>
-      <button type="button" data-dismiss="alert" className="close">
-        &times;
-      </button>
-      {messageDivs}
+      <div className="container">
+        <button type="button" data-dismiss="alert" className="close">
+          &times;
+        </button>
+        {messageDivs}
+      </div>
     </div>
   )
 }
